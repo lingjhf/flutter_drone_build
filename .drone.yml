@@ -1,0 +1,10 @@
+---
+kind: pipeline
+type: docker
+name: default
+
+steps:
+  - name: flutter
+    image: ghcr.io/lingjhf/flutter-image:3.27.1
+    commands:
+      - cd android
