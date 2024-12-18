@@ -10,3 +10,5 @@ steps:
       - cd android
       - echo -e "sdk.dir=/opt/android-sdk\nflutter.sdk=/opt/flutter" > local.properties
       - gradle
+      - cd ..
+      - flutter build apk
