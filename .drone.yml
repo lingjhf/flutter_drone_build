@@ -8,3 +8,4 @@ steps:
     image: ghcr.io/lingjhf/flutter-image:3.27.1
     commands:
       - cd android
+      - gradle
