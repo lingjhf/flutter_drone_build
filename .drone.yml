@@ -8,4 +8,5 @@ steps:
     image: ghcr.io/lingjhf/flutter-image:3.27.1
     commands:
       - cd android
+      - echo -e "sdk.dir=/opt/android-sdk\nflutter.sdk=/opt/flutter" > local.properties
       - gradle
