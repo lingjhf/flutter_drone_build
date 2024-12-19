@@ -12,7 +12,7 @@ steps:
   - name: restore cache
     image: drillster/drone-volume-cache
     volumes:
-      - name: cache
+      - name: cache_gradle
         path: /cache
     settings:
       restore: true
@@ -32,7 +32,7 @@ steps:
   - name: rebuild cache
     image: drillster/drone-volume-cache
     volumes:
-      - name: cache
+      - name: cache_gradle
         path: /cache
     settings:
       rebuild: true
