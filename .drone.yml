@@ -3,6 +3,11 @@ kind: pipeline
 type: docker
 name: default
 
+volumes:
+  - name: cache_gradle
+    host:
+      path: /var/lib/cache
+
 steps:
   - name: flutter
     image: ghcr.io/lingjhf/flutter-image:3.27.1
@@ -13,8 +18,3 @@ steps:
     volumes:
       - name: cache_gradle
         path: /opt/android-sdk
-
-volumes:
-  - name: cache_gradle
-    host:
-      path: /var/lib/cache
