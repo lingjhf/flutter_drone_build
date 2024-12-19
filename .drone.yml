@@ -4,34 +4,17 @@ type: docker
 name: default
 
 steps:
-  - name: restore cache
-    image: drillster/drone-volume-cache
-    volumes:
-      - name: cache
-        path: /cache
-    settings:
-      restore: true
-      mount:
-        - /home/gradle/.gradle
-
   - name: flutter
     image: ghcr.io/lingjhf/flutter-image:3.27.1
     commands:
       - cd android
       - echo -e "sdk.dir=/opt/android-sdk\nflutter.sdk=/opt/flutter" > local.properties
-      - flutter build apk
 
-  - name: rebuild cache
-    image: drillster/drone-volume-cache
     volumes:
-      - name: cache
-        path: /cache
-    settings:
-      rebuild: true
-      mount:
-        - /home/gradle/.gradle
+      - name: cache_gradle
+        path: /opt/android-sdk
 
 volumes:
-  - name: cache
+  - name: cache_gradle
     host:
       path: /var/lib/cache
