@@ -9,6 +9,16 @@ volumes:
       path: /var/lib/cache
 
 steps:
+  - name: restore cache
+    image: drillster/drone-volume-cache
+    volumes:
+      - name: cache
+        path: /cache
+    settings:
+      restore: true
+      mount:
+        - /opt/android-sdk
+
   - name: flutter
     image: ghcr.io/lingjhf/flutter-image:3.27.1
     commands:
@@ -18,3 +28,13 @@ steps:
     volumes:
       - name: cache_gradle
         path: /opt/android-sdk
+
+  - name: rebuild cache
+    image: drillster/drone-volume-cache
+    volumes:
+      - name: cache
+        path: /cache
+    settings:
+      rebuild: true
+      mount:
+        - /opt/android-sdk
