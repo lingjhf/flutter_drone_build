@@ -28,7 +28,7 @@ steps:
       - echo -e "sdk.dir=/opt/android-sdk\nflutter.sdk=/opt/flutter" > local.properties
       - cd ..
       - flutter build apk --verbose
-      - ll
+      - ls -a
 #   - name: rebuild-cache-with-filesystem
 #     image: meltwater/drone-cache
 #     pull: true
