@@ -24,6 +24,7 @@ steps:
     environment:
       GRADLE_USER_HOME: /drone/src
     commands:
+      - export GRADLE_USER_HOME=/drone/src/.gradle
       - cd android
       - echo -e "sdk.dir=/opt/android-sdk\nflutter.sdk=/opt/flutter" > local.properties
       - cd ..
