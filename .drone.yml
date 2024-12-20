@@ -14,10 +14,10 @@ steps:
       archive_format: "gzip"
       # filesystem_cache_root: "/tmp/cache"
       mount:
-        - "vendor"
+        - "./.gradle"
     volumes:
       - name: cache
-        path: /tmp/cache
+        path: /cache
 
   - name: flutter
     image: ghcr.io/lingjhf/flutter-image:3.27.1
@@ -28,6 +28,7 @@ steps:
       - pwd
       - cd android
       - echo -e "sdk.dir=/opt/android-sdk\nflutter.sdk=/opt/flutter" > local.properties
+      - gradle tasks
 
   - name: rebuild-cache-with-filesystem
     image: meltwater/drone-cache
@@ -39,10 +40,10 @@ steps:
       archive_format: "gzip"
       # filesystem_cache_root: "/tmp/cache"
       mount:
-        - "vendor"
+        - "./.gradle"
     volumes:
       - name: cache
-        path: /tmp/cache
+        path: /cache
 
 volumes:
   - name: cache
