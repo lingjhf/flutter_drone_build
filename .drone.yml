@@ -4,20 +4,20 @@ type: docker
 name: default
 
 steps:
-  # - name: restore-cache-with-filesystem
-  #   image: meltwater/drone-cache
-  #   pull: true
-  #   settings:
-  #     backend: "filesystem"
-  #     restore: true
-  #     cache_key: "volume"
-  #     archive_format: "gzip"
-  #     # filesystem_cache_root: "/tmp/cache"
-  #     mount:
-  #       - "./.gradle"
-  #   volumes:
-  #     - name: cache
-  #       path: /tmp/cache
+  - name: restore-cache-with-filesystem
+    image: meltwater/drone-cache
+    pull: true
+    settings:
+      backend: "filesystem"
+      restore: true
+      cache_key: "volume"
+      archive_format: "gzip"
+      # filesystem_cache_root: "/tmp/cache"
+      mount:
+        - "./.gradle"
+    volumes:
+      - name: cache
+        path: /tmp/cache
 
   - name: flutter
     image: ghcr.io/lingjhf/flutter-image:3.27.1
@@ -30,22 +30,22 @@ steps:
       - cd ..
       - flutter build apk --verbose
       - ls -a
-#   - name: rebuild-cache-with-filesystem
-#     image: meltwater/drone-cache
-#     pull: true
-#     settings:
-#       backend: "filesystem"
-#       rebuild: true
-#       cache_key: "volume"
-#       archive_format: "gzip"
-#       # filesystem_cache_root: "/tmp/cache"
-#       mount:
-#         - "./.gradle"
-#     volumes:
-#       - name: cache
-#         path: /tmp/cache
+  - name: rebuild-cache-with-filesystem
+    image: meltwater/drone-cache
+    pull: true
+    settings:
+      backend: "filesystem"
+      rebuild: true
+      cache_key: "volume"
+      archive_format: "gzip"
+      # filesystem_cache_root: "/tmp/cache"
+      mount:
+        - "./.gradle"
+    volumes:
+      - name: cache
+        path: /tmp/cache
 
-# volumes:
-#   - name: cache
-#     host:
-#       path: /var/lib/cache
+volumes:
+  - name: cache
+    host:
+      path: /var/lib/cache
