@@ -24,11 +24,11 @@ steps:
     environment:
       GRADLE_USER_HOME: /drone/src
     commands:
-      - env
+      - ls /
       - pwd
       - cd android
       - echo -e "sdk.dir=/opt/android-sdk\nflutter.sdk=/opt/flutter" > local.properties
-      - gradle tasks
+      - gradle tasks --info
 
   - name: rebuild-cache-with-filesystem
     image: meltwater/drone-cache
